@@ -700,6 +700,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#protocol</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#typealias</string>
 				</dict>
 			</array>
@@ -1372,6 +1376,74 @@
 									</dict>
 									<key>match</key>
 									<string>\b(assignment)\b(?:\s*:\s*(true|false)\b)?</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<key>protocol</key>
+				<dict>
+					<key>begin</key>
+					<string>\b(protocol)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.$1.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.$1.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?&lt;=\})</string>
+					<key>name</key>
+					<string>meta.definition.type.protocol.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#inheritance-clause</string>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(\{)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.type.begin.swift</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(\})</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.type.end.swift</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.definition.type.protocol.body.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-braces</string>
 								</dict>
 							</array>
 						</dict>
