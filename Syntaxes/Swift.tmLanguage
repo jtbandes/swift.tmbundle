@@ -704,11 +704,87 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#type</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#typealias</string>
 				</dict>
 			</array>
 			<key>repository</key>
 			<dict>
+				<key>available-types</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#builtin-types</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#attribute</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b(?:throws|rethrows)\b</string>
+							<key>name</key>
+							<string>keyword.control.exception.swift</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\binout\b</string>
+							<key>name</key>
+							<string>storage.modifier.swift</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\bSelf\b</string>
+							<key>name</key>
+							<string>variable.language.swift</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.type.function.swift</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(-&gt;)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.type.composition.swift</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>Swift 3: A &amp; B</string>
+							<key>match</key>
+							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(&amp;)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\bAny\b</string>
+							<key>name</key>
+							<string>keyword.operator.type.any.swift</string>
+						</dict>
+						<dict>
+							<key>comment</key>
+							<string>Swift 2: protocol&lt;A, B&gt;</string>
+							<key>match</key>
+							<string>\bprotocol\b</string>
+							<key>name</key>
+							<string>keyword.operator.type.composition.swift</string>
+						</dict>
+					</array>
+				</dict>
 				<key>function</key>
 				<dict>
 					<key>begin</key>
@@ -994,6 +1070,84 @@
 							<string>\b((?!\d)\w[\w\d]*)\b</string>
 						</dict>
 					</array>
+				</dict>
+				<key>inheritance-clause</key>
+				<dict>
+					<key>begin</key>
+					<string>:\s*</string>
+					<key>end</key>
+					<string>(?=\bwhere\b|\{)</string>
+					<key>name</key>
+					<string>meta.inheritance-clause.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\b(?!\d)\w[\w\d]*\b</string>
+							<key>end</key>
+							<string>(?=\s*[^\s(&lt;])(?# this pattern may only end if what follows doesn't look like it could be a valid type)</string>
+							<key>name</key>
+							<string>entity.other.inherited-class.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#nested-angles</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+					<key>repository</key>
+					<dict>
+						<key>nested-angles</key>
+						<dict>
+							<key>begin</key>
+							<string>&lt;</string>
+							<key>end</key>
+							<string>&gt;|(?=[^\w\d&lt;&gt;()\s,=&amp;`](?# damage control - characters other than these should never be allowed in an inheritance clause ))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-angles</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-parens</string>
+								</dict>
+							</array>
+						</dict>
+						<key>nested-parens</key>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>end</key>
+							<string>\)|(?=[^\w\d&lt;&gt;()\s,=&amp;`](?# damage control - characters other than these should never be allowed in an inheritance clause ))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-parens</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-angles</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
 				</dict>
 				<key>nested-braces</key>
 				<dict>
@@ -1435,6 +1589,84 @@
 							</dict>
 							<key>name</key>
 							<string>meta.definition.type.protocol.body.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#nested-braces</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<key>type</key>
+				<dict>
+					<key>begin</key>
+					<string>\b(class(?!\s+(?:func|var|let)\b)|struct|enum)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.$1.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.$1.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?&lt;=\})</string>
+					<key>name</key>
+					<string>meta.definition.type.$1.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#generic-parameter-list</string>
+						</dict>
+						<dict>
+							<key>comment</key>
+							<string>Swift 3: generic constraints after the generic param list</string>
+							<key>include</key>
+							<string>#generic-constraints</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#inheritance-clause</string>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>\{</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.type.begin.swift</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>\}</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.type.end.swift</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.definition.type.body.swift</string>
 							<key>patterns</key>
 							<array>
 								<dict>
