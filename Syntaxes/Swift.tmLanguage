@@ -965,7 +965,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?!\G)(?=\{|\bwhere\b)|$</string>
+					<string>(?!\G)(?=\{|\bwhere\b|;)|$</string>
 					<key>name</key>
 					<string>meta.function-result.swift</string>
 					<key>patterns</key>
@@ -1593,6 +1593,10 @@
 							<array>
 								<dict>
 									<key>include</key>
+									<string>#protocol-method</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>$self</string>
 								</dict>
 								<dict>
@@ -1602,6 +1606,97 @@
 							</array>
 						</dict>
 					</array>
+					<key>repository</key>
+					<dict>
+						<key>protocol-method</key>
+						<dict>
+							<key>begin</key>
+							<string>\b(func)\s+(\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>storage.type.function.swift</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>entity.name.function.swift</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>$|(?=;|//|/\*)</string>
+							<key>name</key>
+							<string>meta.definition.function.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#comments</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#generic-parameter-list</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#parameter-clause</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#function-result</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>\b(?:throws|rethrows)\b</string>
+									<key>name</key>
+									<string>keyword.control.exception.swift</string>
+								</dict>
+								<dict>
+									<key>comment</key>
+									<string>Swift 3: generic constraints after the parameters and return type</string>
+									<key>include</key>
+									<string>#generic-constraints</string>
+								</dict>
+								<dict>
+									<key>begin</key>
+									<string>(\{)</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.section.function.begin.swift</string>
+										</dict>
+									</dict>
+									<key>end</key>
+									<string>(\})</string>
+									<key>endCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.section.function.end.swift</string>
+										</dict>
+									</dict>
+									<key>name</key>
+									<string>invalid.illegal.function-body-not-allowed-in-protocol.swift</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>$self</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#nested-braces</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+					</dict>
 				</dict>
 				<key>type</key>
 				<dict>
