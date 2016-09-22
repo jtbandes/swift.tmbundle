@@ -21,6 +21,166 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>attribute</key>
+		<dict>
+			<key>begin</key>
+			<string>(@)(?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.attribute.swift</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.attribute.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.identifier.swift</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.identifier.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?!\G\()</string>
+			<key>name</key>
+			<string>meta.attribute.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.begin.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.end.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.arguments.attribute.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>builtin-functions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\btype(?=\(of:)</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Member functions in the standard library in Swift 3 which may be used with trailing closures</string>
+					<key>match</key>
+					<string>(?&lt;=\.)(?:s(?:tarts|ort(?:ed)?|plit)|next|c(?:ontains|reate)|index|partition|e(?:ncode|lementsEqual)|f(?:i(?:lter|rst)|orEach|latMap)|with(?:M(?:utableCharacters|emoryRebound)|CString|U(?:nsafe(?:Mutable(?:BufferPointer|Pointer(?:s|To(?:Header|Elements)))|BufferPointer)|TF8Buffer))|lexicographicallyPrecedes|reduce|m(?:in|a(?:p|x)))\b</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Member functions in the standard library in Swift 3</string>
+					<key>match</key>
+					<string>(?&lt;=\.)(?:s(?:ymmetricDifference|t(?:oreBytes|artsWith|ride)|ortInPlace|u(?:ccessor|ffix|btract(?:ing|InPlace|WithOverflow)?)|quareRoot|amePosition)|h(?:oldsUnique(?:Reference|OrPinnedReference)|as(?:Suffix|Prefix))|negate(?:d)?|c(?:o(?:untByEnumerating|py(?:Bytes)?)|lamp(?:ed)?)|t(?:o(?:IntMax|Opaque|UIntMax)|ake(?:RetainedValue|UnretainedValue)|r(?:uncatingRemainder|a(?:nscodedLength|ilSurrogate)))|i(?:s(?:MutableAndUniquelyReferenced(?:OrPinned)?|S(?:trictSu(?:perset(?:Of)?|bset(?:Of)?)|u(?:perset(?:Of)?|bset(?:Of)?))|Continuation|T(?:otallyOrdered|railSurrogate)|Disjoint(?:With)?|Unique(?:Reference|lyReferenced(?:OrPinned)?)|Equal|Le(?:ss(?:ThanOrEqualTo)?|adSurrogate))|n(?:sert(?:ContentsOf)?|tersect(?:ion|InPlace)?|itialize(?:Memory|From)?|dex(?:Of|ForKey)))|o(?:verlaps|bjectAt)|d(?:i(?:stance(?:To)?|vide(?:d|WithOverflow)?)|e(?:s(?:cendant|troy)|code(?:CString)?|initialize|alloc(?:ate(?:Capacity)?)?)|rop(?:First|Last))|u(?:n(?:ion(?:InPlace)?|derestimateCount|wrappedOrError)|p(?:date(?:Value)?|percased))|join(?:ed|WithSeparator)|p(?:op(?:First|Last)|ass(?:Retained|Unretained)|re(?:decessor|fix))|e(?:scape(?:d)?|numerate(?:d)?|xclusiveOr(?:InPlace)?)|f(?:orm(?:Remainder|S(?:ymmetricDifference|quareRoot)|TruncatingRemainder|In(?:tersection|dex)|Union)|latten|rom(?:CString(?:RepairingIllFormedUTF8)?|Opaque))|w(?:idth|rite(?:To)?)|l(?:o(?:wercased|ad)|e(?:adSurrogate|xicographicalCompare))|a(?:ss(?:ign(?:BackwardFrom|From)?|umingMemoryBound)|d(?:d(?:ing(?:Product)?|Product|WithOverflow)?|vanced(?:By)?)|utorelease|ppend(?:ContentsOf)?|lloc(?:ate)?|bs)|r(?:ound(?:ed)?|e(?:serveCapacity|tain|place(?:Range|Subrange)?|verse(?:d)?|quest(?:NativeBuffer|UniqueMutableBackingBuffer)|lease|m(?:ove(?:Range|Subrange|Value(?:ForKey)?|First|Last|A(?:tIndex|ll))?|ainder(?:WithOverflow)?)))|ge(?:nerate|t(?:Objects|Element))|m(?:in(?:imum(?:Magnitude)?|Element)|ove(?:Initialize(?:Memory|BackwardFrom|From)?|Assign(?:From)?)?|ultipl(?:y(?:WithOverflow)?|ied)|easure|a(?:ke(?:Iterator|Description)|x(?:imum(?:Magnitude)?|Element)))|bindMemory)\s*(?=\()</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Member functions in the standard library in Swift 2 only</string>
+					<key>match</key>
+					<string>(?&lt;=\.)(?:s(?:uperclassMirror|amePositionIn)|nextObject|c(?:haracterAtIndex|o(?:untByEnumeratingWithState|pyWithZone)|ustom(?:Mirror|PlaygroundQuickLook))|is(?:EmptyInput|ASCII)|object(?:Enumerator|ForKey|AtIndex)|join|put|keyEnumerator|withUnsafeMutablePointerToValue|length|getMirror|m(?:oveInitializeAssignFrom|ember))(?=\()</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+			</array>
+		</dict>
+		<key>builtin-global-functions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Global functions available in Swift 3 which may be used with trailing closures</string>
+					<key>match</key>
+					<string>\b(?:anyGenerator)\b</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Global functions available in Swift 3</string>
+					<key>match</key>
+					<string>\b(?:s(?:tride(?:of(?:Value)?)?|izeof(?:Value)?|equence|wap)|numericCast|transcode|is(?:UniquelyReferenced(?:NonObjC)?|KnownUniquelyReferenced)|zip|d(?:ump|ebugPrint)|unsafe(?:BitCast|Downcast|Unwrap|Address(?:Of)?)|pr(?:int|econdition(?:Failure)?)|fatalError|with(?:Unsafe(?:MutablePointer|Pointer)|ExtendedLifetime|VaList)|a(?:ssert(?:ionFailure)?|lignof(?:Value)?|bs)|re(?:peatElement|adLine)|getVaList|m(?:in|ax))\s*(?=\()</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Global functions available in Swift 2 only</string>
+					<key>match</key>
+					<string>\b(?:s(?:ort|uffix|pli(?:ce|t))|insert|overlaps|d(?:istance|rop(?:First|Last))|join|prefix|extend|withUnsafe(?:MutablePointers|Pointers)|lazy|advance|re(?:flect|move(?:Range|Last|A(?:tIndex|ll))))\s*(?=\()</string>
+					<key>name</key>
+					<string>support.function.swift</string>
+				</dict>
+			</array>
+		</dict>
+		<key>builtin-property</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=\bProcess\.|\bCommandLine\.)(arguments|argc|unsafeArgv)</string>
+					<key>name</key>
+					<string>support.variable.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Properties in the standard library in Swift 3</string>
+					<key>match</key>
+					<string>(?&lt;=\.)(?:s(?:t(?:artIndex|ri(?:ngValue|de))|i(?:ze|gn(?:BitIndex|ificand(?:Bit(?:Count|Pattern)|Width)?|alingNaN)?)|u(?:perclassMirror|mmary|bscriptBaseAddress))|h(?:eader|as(?:hValue|PointerRepresentation))|n(?:ulTerminatedUTF8|ext(?:Down|Up)|a(?:n|tiveOwner))|c(?:haracters|ount(?:TrailingZeros)?|ustom(?:Mirror|PlaygroundQuickLook)|apacity)|i(?:s(?:S(?:ign(?:Minus|aling(?:NaN)?)|ubnormal)|N(?:ormal|aN)|Canonical|Infinite|Zero|Empty|Finite|ASCII)|n(?:dices|finity)|dentity)|owner|de(?:scription|bugDescription)|u(?:n(?:safelyUnwrapped|icodeScalar(?:s)?|derestimatedCount)|tf(?:16|8(?:Start|C(?:String|odeUnitCount))?)|intValue|ppercaseString|lp(?:OfOne)?)|p(?:i|ointee)|e(?:ndIndex|lements|xponent(?:Bit(?:Count|Pattern))?)|value(?:s)?|keys|quietNaN|f(?:irst(?:ElementAddress(?:IfContiguous)?)?|loatingPointClass)|l(?:ittleEndian|owercaseString|eastNo(?:nzeroMagnitude|rmalMagnitude)|a(?:st|zy))|a(?:l(?:ignment|l(?:ocatedElementCount|Zeros))|rray(?:PropertyIsNativeTypeChecked)?)|ra(?:dix|wValue)|greatestFiniteMagnitude|m(?:in|emory|ax)|b(?:yteS(?:ize|wapped)|i(?:nade|tPattern|gEndian)|uffer|ase(?:Address)?))\b</string>
+					<key>name</key>
+					<string>support.variable.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Properties in the standard library in Swift 2 only</string>
+					<key>match</key>
+					<string>(?&lt;=\.)(?:boolValue|disposition|end|objectIdentifier|quickLookObject|start|valueType)\b</string>
+					<key>name</key>
+					<string>support.variable.swift</string>
+				</dict>
+			</array>
+		</dict>
 		<key>builtin-types</key>
 		<dict>
 			<key>comment</key>
@@ -164,6 +324,43 @@
 					</array>
 				</dict>
 			</dict>
+		</dict>
+		<key>closure-parameter</key>
+		<dict>
+			<key>match</key>
+			<string>\$[0-9]+</string>
+			<key>name</key>
+			<string>variable.other.closure-parameter.swift</string>
+		</dict>
+		<key>code-block</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.scope.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\}</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.scope.end.swift</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
 		</dict>
 		<key>comments</key>
 		<dict>
@@ -692,6 +889,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#import</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#operator</string>
 				</dict>
 				<dict>
@@ -788,7 +989,7 @@
 				<key>function</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(func)\s+(\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+					<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -800,6 +1001,16 @@
 						<dict>
 							<key>name</key>
 							<string>entity.name.function.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -865,10 +1076,6 @@
 									<key>include</key>
 									<string>$self</string>
 								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-braces</string>
-								</dict>
 							</array>
 						</dict>
 					</array>
@@ -893,7 +1100,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#comment</string>
+							<string>#comments</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -943,10 +1150,6 @@
 								<dict>
 									<key>include</key>
 									<string>$self</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-braces</string>
 								</dict>
 							</array>
 						</dict>
@@ -1071,6 +1274,31 @@
 						</dict>
 					</array>
 				</dict>
+				<key>import</key>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.import.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>support.type.module.import.swift</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?((?:\B\$[0-9]+|\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)(?:\.(?:\B\$[0-9]+|\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+))*)</string>
+					<key>name</key>
+					<string>meta.import.swift</string>
+				</dict>
 				<key>inheritance-clause</key>
 				<dict>
 					<key>begin</key>
@@ -1148,40 +1376,6 @@
 							</array>
 						</dict>
 					</dict>
-				</dict>
-				<key>nested-braces</key>
-				<dict>
-					<key>begin</key>
-					<string>\{</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.scope.begin.swift</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\}</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.scope.end.swift</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#nested-braces</string>
-						</dict>
-					</array>
 				</dict>
 				<key>operator</key>
 				<dict>
@@ -1347,9 +1541,19 @@
 										</dict>
 									</array>
 								</dict>
+								<key>3</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.identifier.swift</string>
+								</dict>
+								<key>4</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.identifier.swift</string>
+								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)\s*((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+							<string>(:)\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
 						</dict>
 					</dict>
 				</dict>
@@ -1426,7 +1630,7 @@
 				<key>precedencegroup</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(precedencegroup)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)\s*(?=\{)</string>
+					<string>\b(precedencegroup)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))\s*(?=\{)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1439,6 +1643,16 @@
 							<key>name</key>
 							<string>entity.name.type.precedencegroup.swift</string>
 						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
 					</dict>
 					<key>end</key>
 					<string>(?!\G)</string>
@@ -1448,20 +1662,20 @@
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>(\{)</string>
+							<string>\{</string>
 							<key>beginCaptures</key>
 							<dict>
-								<key>1</key>
+								<key>0</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.precedencegroup.begin.swift</string>
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(\})</string>
+							<string>\}</string>
 							<key>endCaptures</key>
 							<dict>
-								<key>1</key>
+								<key>0</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.precedencegroup.end.swift</string>
@@ -1471,7 +1685,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#comment</string>
+									<string>#comments</string>
 								</dict>
 								<dict>
 									<key>captures</key>
@@ -1493,9 +1707,19 @@
 												</dict>
 											</array>
 										</dict>
+										<key>3</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.identifier.swift</string>
+										</dict>
+										<key>4</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.identifier.swift</string>
+										</dict>
 									</dict>
 									<key>match</key>
-									<string>\b(higherThan|lowerThan)\s*:\s*((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+									<string>\b(higherThan|lowerThan)\s*:\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
 								</dict>
 								<dict>
 									<key>captures</key>
@@ -1538,7 +1762,7 @@
 				<key>protocol</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(protocol)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+					<string>\b(protocol)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1550,6 +1774,16 @@
 						<dict>
 							<key>name</key>
 							<string>entity.name.type.$1.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1568,20 +1802,20 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(\{)</string>
+							<string>\{</string>
 							<key>beginCaptures</key>
 							<dict>
-								<key>1</key>
+								<key>0</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.type.begin.swift</string>
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(\})</string>
+							<string>\}</string>
 							<key>endCaptures</key>
 							<dict>
-								<key>1</key>
+								<key>0</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.type.end.swift</string>
@@ -1599,10 +1833,6 @@
 									<key>include</key>
 									<string>$self</string>
 								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-braces</string>
-								</dict>
 							</array>
 						</dict>
 					</array>
@@ -1611,7 +1841,7 @@
 						<key>protocol-method</key>
 						<dict>
 							<key>begin</key>
-							<string>\b(func)\s+(\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+							<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
@@ -1661,20 +1891,20 @@
 								</dict>
 								<dict>
 									<key>begin</key>
-									<string>(\{)</string>
+									<string>\{</string>
 									<key>beginCaptures</key>
 									<dict>
-										<key>1</key>
+										<key>0</key>
 										<dict>
 											<key>name</key>
 											<string>punctuation.section.function.begin.swift</string>
 										</dict>
 									</dict>
 									<key>end</key>
-									<string>(\})</string>
+									<string>\}</string>
 									<key>endCaptures</key>
 									<dict>
-										<key>1</key>
+										<key>0</key>
 										<dict>
 											<key>name</key>
 											<string>punctuation.section.function.end.swift</string>
@@ -1688,10 +1918,6 @@
 											<key>include</key>
 											<string>$self</string>
 										</dict>
-										<dict>
-											<key>include</key>
-											<string>#nested-braces</string>
-										</dict>
 									</array>
 								</dict>
 							</array>
@@ -1701,7 +1927,7 @@
 				<key>type</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(class(?!\s+(?:func|var|let)\b)|struct|enum)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)</string>
+					<string>\b(class(?!\s+(?:func|var|let)\b)|struct|enum)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1713,6 +1939,16 @@
 						<dict>
 							<key>name</key>
 							<string>entity.name.type.$1.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1768,10 +2004,6 @@
 									<key>include</key>
 									<string>$self</string>
 								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-braces</string>
-								</dict>
 							</array>
 						</dict>
 					</array>
@@ -1779,7 +2011,7 @@
 				<key>typealias</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(typealias)\s+((?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B)\s*(?=[&lt;=])</string>
+					<string>\b(typealias)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))\s*(?=[&lt;=])</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1791,6 +2023,16 @@
 						<dict>
 							<key>name</key>
 							<string>entity.name.type.typealias.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.identifier.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1820,6 +2062,104 @@
 					</array>
 				</dict>
 			</dict>
+		</dict>
+		<key>keyword</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(?:if|else|guard|where|switch|case|default|fallthrough)\b</string>
+					<key>name</key>
+					<string>keyword.control.branch.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:continue|break|fallthrough|return)\b</string>
+					<key>name</key>
+					<string>keyword.control.transfer.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:while|repeat|for|in)\b</string>
+					<key>name</key>
+					<string>keyword.control.loop.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bdefer\b</string>
+					<key>name</key>
+					<string>keyword.control.defer.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:do|catch|throws?|rethrows|try)\b|\btry[?!]\B</string>
+					<key>name</key>
+					<string>keyword.control.exception.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:associatedtype|let|operator|typealias|var)\b</string>
+					<key>name</key>
+					<string>keyword.other.declaration-specifier.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(class|enum|extension|precedencegroup|protocol|struct)\b</string>
+					<key>name</key>
+					<string>storage.type.$1.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:inout|static|final|lazy|mutating|nonmutating|optional|indirect|required|override|dynamic|convenience|infix|prefix|postfix)\b</string>
+					<key>name</key>
+					<string>storage.modifier.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\binit[?!]|\b(?:func|init|deinit|subscript|didSet|get|set|willSet)\b</string>
+					<key>name</key>
+					<string>storage.type.function.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:fileprivate|internal|private|public)\b</string>
+					<key>name</key>
+					<string>keyword.other.declaration-specifier.accessibility.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>matches weak, unowned, unowned(safe), unowned(unsafe)</string>
+					<key>match</key>
+					<string>\b(?:weak\b|unowned(?:\((?:un)?safe\))?)</string>
+					<key>name</key>
+					<string>keyword.other.capture-specifier.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:super|self)\b</string>
+					<key>name</key>
+					<string>variable.language.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\B(?:#file|#line|#column|#function|#dsohandle)\b|\b(?:__FILE__|__LINE__|__COLUMN__|__FUNCTION__|__DSO_HANDLE__)\b</string>
+					<key>name</key>
+					<string>support.variable.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:dynamicType|Protocol|Type)\b</string>
+					<key>name</key>
+					<string>keyword.operator.other.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bimport\b</string>
+					<key>name</key>
+					<string>keyword.control.import.swift</string>
+				</dict>
+			</array>
 		</dict>
 		<key>literals</key>
 		<dict>
@@ -2075,6 +2415,14 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>comment</key>
+					<string>Type casting</string>
+					<key>match</key>
+					<string>\b(is\b|as([!?]\B|\b))</string>
+					<key>name</key>
+					<string>keyword.operator.type-casting.swift</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>(?x)
 						(?=
@@ -2137,7 +2485,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.prefix.swift</string>
 										</dict>
@@ -2202,7 +2550,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.postfix.swift</string>
 										</dict>
@@ -2321,7 +2669,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.infix.swift</string>
 										</dict>
@@ -2372,7 +2720,7 @@
 									<array>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.prefix.dot.swift</string>
 										</dict>
@@ -2427,7 +2775,7 @@
 									<array>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.postfix.dot.swift</string>
 										</dict>
@@ -2488,7 +2836,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>.*</string>
+											<string>.+</string>
 											<key>name</key>
 											<string>keyword.operator.custom.infix.dot.swift</string>
 										</dict>
@@ -2550,6 +2898,18 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#code-block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#closure-parameter</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#literals</string>
 				</dict>
 				<dict>
@@ -2563,6 +2923,70 @@
 				<dict>
 					<key>include</key>
 					<string>#declarations</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-global-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-property</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#section-punctuation</string>
+				</dict>
+			</array>
+		</dict>
+		<key>section-punctuation</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.begin.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.end.swift</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Allows the special return snippet to fire.</string>
+					<key>match</key>
+					<string>(\()(\))</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.begin.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.end.swift</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Allows the special return snippet to fire.</string>
+					<key>match</key>
+					<string>(\[)(\])</string>
 				</dict>
 			</array>
 		</dict>
