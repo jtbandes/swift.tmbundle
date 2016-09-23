@@ -24,7 +24,7 @@
 		<key>attribute</key>
 		<dict>
 			<key>begin</key>
-			<string>(@)(`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\2)</string>
+			<string>(@)(?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -989,7 +989,7 @@
 				<key>function</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+					<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1553,7 +1553,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
+							<string>(:)\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))</string>
 						</dict>
 					</dict>
 				</dict>
@@ -1630,7 +1630,7 @@
 				<key>precedencegroup</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(precedencegroup)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))\s*(?=\{)</string>
+					<string>\b(precedencegroup)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))\s*(?=\{)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1719,7 +1719,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>\b(higherThan|lowerThan)\s*:\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
+									<string>\b(higherThan|lowerThan)\s*:\s*((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))</string>
 								</dict>
 								<dict>
 									<key>captures</key>
@@ -1762,7 +1762,7 @@
 				<key>protocol</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(protocol)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
+					<string>\b(protocol)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1841,7 +1841,7 @@
 						<key>protocol-method</key>
 						<dict>
 							<key>begin</key>
-							<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+							<string>\b(func)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;)|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
@@ -1927,7 +1927,7 @@
 				<key>type</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(class(?!\s+(?:func|var|let)\b)|struct|enum)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))</string>
+					<string>\b(class(?!\s+(?:func|var|let)\b)|struct|enum)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -2011,7 +2011,7 @@
 				<key>typealias</key>
 				<dict>
 					<key>begin</key>
-					<string>\b(typealias)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_[0-9]\p{Mn}]+(\k&lt;q&gt;))\s*(?=[&lt;=])</string>
+					<string>\b(typealias)\s+((?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;))\s*(?=[&lt;=])</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
