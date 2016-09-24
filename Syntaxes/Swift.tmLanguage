@@ -920,6 +920,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#comments</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#builtin-types</string>
 						</dict>
 						<dict>
@@ -984,7 +988,85 @@
 							<key>name</key>
 							<string>keyword.operator.type.composition.swift</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#tuple-type</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#collection-type</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#generic-arguments</string>
+						</dict>
 					</array>
+					<key>repository</key>
+					<dict>
+						<key>collection-type</key>
+						<dict>
+							<key>begin</key>
+							<string>\[</string>
+							<key>comment</key>
+							<string>array and dictionary types [Value] and [Key: Value]</string>
+							<key>end</key>
+							<string>\]|(?=[&gt;){}])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+								<dict>
+									<key>begin</key>
+									<string>:</string>
+									<key>end</key>
+									<string>(?=\]|[&gt;){}])</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>match</key>
+											<string>:</string>
+											<key>name</key>
+											<string>invalid.illegal.extra-colon-in-dictionary-type.swift</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#available-types</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+						<key>generic-arguments</key>
+						<dict>
+							<key>begin</key>
+							<string>&lt;</string>
+							<key>end</key>
+							<string>&gt;|(?=[)\]{}])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+							</array>
+						</dict>
+						<key>tuple-type</key>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>end</key>
+							<string>\)|(?=[&gt;\]{}])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
 				</dict>
 				<key>function</key>
 				<dict>
@@ -1320,62 +1402,11 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#nested-angles</string>
-								</dict>
-								<dict>
-									<key>include</key>
 									<string>#available-types</string>
 								</dict>
 							</array>
 						</dict>
 					</array>
-					<key>repository</key>
-					<dict>
-						<key>nested-angles</key>
-						<dict>
-							<key>begin</key>
-							<string>&lt;</string>
-							<key>end</key>
-							<string>&gt;|(?=[^\w\d&lt;&gt;()\s,=&amp;`](?# damage control - characters other than these should never be allowed in an inheritance clause ))</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#available-types</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-angles</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-parens</string>
-								</dict>
-							</array>
-						</dict>
-						<key>nested-parens</key>
-						<dict>
-							<key>begin</key>
-							<string>\(</string>
-							<key>end</key>
-							<string>\)|(?=[^\w\d&lt;&gt;()\s,=&amp;`](?# damage control - characters other than these should never be allowed in an inheritance clause ))</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#available-types</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-parens</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#nested-angles</string>
-								</dict>
-							</array>
-						</dict>
-					</dict>
 				</dict>
 				<key>operator</key>
 				<dict>
@@ -1566,7 +1597,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.function-arguments.begin.swift</string>
+							<string>punctuation.definition.parameters.begin.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1576,7 +1607,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.function-arguments.end.swift</string>
+							<string>punctuation.definition.parameters.end.swift</string>
 						</dict>
 					</dict>
 					<key>name</key>
@@ -1622,8 +1653,38 @@
 							<string>\b(((?!\d)\w[\w\d]*))\b(?=\s*:)</string>
 						</dict>
 						<dict>
-							<key>include</key>
-							<string>$self</string>
+							<key>begin</key>
+							<string>:\s*(?!\s)</string>
+							<key>end</key>
+							<string>(?=[,\)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>:</string>
+									<key>name</key>
+									<string>invalid.illegal.extra-colon-in-parameter-list.swift</string>
+								</dict>
+								<dict>
+									<key>begin</key>
+									<string>=</string>
+									<key>comment</key>
+									<string>a parameter's default value</string>
+									<key>end</key>
+									<string>(?=[,\)])</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>$self</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
 						</dict>
 					</array>
 				</dict>
@@ -2257,7 +2318,7 @@
 							<key>comment</key>
 							<string>tuple positional member: not really a numeric literal, but not invalid</string>
 							<key>match</key>
-							<string>(?&lt;=[^.]\.)[0-9][0-9_]*\b</string>
+							<string>(?&lt;=[^.]\.)[0-9]+\b</string>
 						</dict>
 						<dict>
 							<key>comment</key>
