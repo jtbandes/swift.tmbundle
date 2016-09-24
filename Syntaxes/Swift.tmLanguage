@@ -1680,7 +1680,7 @@
 									<array>
 										<dict>
 											<key>include</key>
-											<string>$self</string>
+											<string>#expressions</string>
 										</dict>
 									</array>
 								</dict>
@@ -2123,6 +2123,86 @@
 					</array>
 				</dict>
 			</dict>
+		</dict>
+		<key>expressions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#code-block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attribute</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#closure-parameter</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#literals</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-global-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtin-property</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#section-punctuation</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\[</string>
+					<key>end</key>
+					<string>\]</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expressions</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<key>keyword</key>
 		<dict>
@@ -2951,35 +3031,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#compiler-control</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#code-block</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#attribute</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#closure-parameter</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#literals</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#operators</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#builtin-types</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -2987,23 +3039,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#builtin-functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#builtin-global-functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#builtin-property</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#keyword</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#section-punctuation</string>
+					<string>#expressions</string>
 				</dict>
 			</array>
 		</dict>
