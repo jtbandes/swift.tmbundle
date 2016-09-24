@@ -21,7 +21,7 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>attribute</key>
+		<key>attributes</key>
 		<dict>
 			<key>name</key>
 			<string>meta.attribute.swift</string>
@@ -1102,7 +1102,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#attribute</string>
+							<string>#attributes</string>
 						</dict>
 						<dict>
 							<key>match</key>
@@ -2448,7 +2448,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#attribute</string>
+					<string>#attributes</string>
 				</dict>
 				<dict>
 					<key>include</key>
