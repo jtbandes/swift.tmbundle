@@ -976,6 +976,12 @@
 						</dict>
 						<dict>
 							<key>match</key>
+							<string>[?!]</string>
+							<key>name</key>
+							<string>keyword.operator.type.optional.swift</string>
+						</dict>
+						<dict>
+							<key>match</key>
 							<string>\bAny\b</string>
 							<key>name</key>
 							<string>keyword.operator.type.any.swift</string>
