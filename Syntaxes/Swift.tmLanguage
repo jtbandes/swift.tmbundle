@@ -196,7 +196,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(@)(?&lt;q&gt;`?)[\p{L}_][\p{L}_0-9\p{Mn}]+(\k&lt;q&gt;)</string>
+					<string>(@)(?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
