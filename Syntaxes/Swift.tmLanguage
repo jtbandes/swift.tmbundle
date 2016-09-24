@@ -1603,6 +1603,63 @@
 				</dict>
 				<key>import</key>
 				<dict>
+					<key>begin</key>
+					<string>\b(import)\s+</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.import.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(;)|$\n?|(?=//|/\*|\z)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.terminator.statement.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.import.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\G(?!;|$//|/\*|\z)(?:(typealias|struct|class|enum|protocol|var|func)\s+)?</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>storage.modifier.swift</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=;|$|//|/\*|\z)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>captures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>support.type.module.import.swift</string>
+										</dict>
+									</dict>
+									<key>match</key>
+									<string>(?:\G|\.)((?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<key>import_old</key>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -1622,7 +1679,31 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?((?:\B\$[0-9]+|\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)(?:\.(?:\B\$[0-9]+|\b(?!\d)\w[\w\d]*\b|\B`(?!\d)\w[\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+))*)</string>
+					<string>(?x)
+						\b
+						(import)
+						\s+
+						(?:
+							(typealias|struct|class|enum|protocol|var|func)
+							\s+
+						)?
+						(
+							(?:
+								\$[0-9]+
+							  | (?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;)
+							  | [/=\-+!*%&lt;&gt;&amp;|\^~.]+
+							)
+							(?:
+								\.
+								(?:
+									\B\$[0-9]+
+								  | \b(?!\d)\w[\w\d]*\b
+						  		  | \B`(?!\d)\w[\w\d]*`\B
+						          | [/=\-+!*%&lt;&gt;&amp;|\^~.]+
+							  	)
+							)*
+						)
+					</string>
 					<key>name</key>
 					<string>meta.import.swift</string>
 				</dict>
