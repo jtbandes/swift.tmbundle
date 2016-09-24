@@ -1738,8 +1738,11 @@
 				<dict>
 					<key>begin</key>
 					<string>(?x)
-						\b(prefix|infix|postfix)?
-						\s+
+						(?:
+							\b(prefix|infix|postfix)
+							\s+
+						)?
+						\b
 						(operator)
 						\s+
 						(
