@@ -1178,7 +1178,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#generic-arguments</string>
+							<string>#generic-argument-clause</string>
 						</dict>
 					</array>
 					<key>repository</key>
@@ -1187,10 +1187,26 @@
 						<dict>
 							<key>begin</key>
 							<string>\[</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.section.collection-type.begin.swift</string>
+								</dict>
+							</dict>
 							<key>comment</key>
 							<string>array and dictionary types [Value] and [Key: Value]</string>
 							<key>end</key>
 							<string>\]|(?=[&gt;){}])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.section.collection-type.end.swift</string>
+								</dict>
+							</dict>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -1200,6 +1216,14 @@
 								<dict>
 									<key>begin</key>
 									<string>:</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>0</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.separator.key-value.swift</string>
+										</dict>
+									</dict>
 									<key>end</key>
 									<string>(?=\]|[&gt;){}])</string>
 									<key>patterns</key>
@@ -1218,26 +1242,28 @@
 								</dict>
 							</array>
 						</dict>
-						<key>generic-arguments</key>
-						<dict>
-							<key>begin</key>
-							<string>&lt;</string>
-							<key>end</key>
-							<string>&gt;|(?=[)\]{}])</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#available-types</string>
-								</dict>
-							</array>
-						</dict>
 						<key>tuple-type</key>
 						<dict>
 							<key>begin</key>
 							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.section.tuple-type.begin.swift</string>
+								</dict>
+							</dict>
 							<key>end</key>
 							<string>\)|(?=[&gt;\]{}])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.section.tuple-type.end.swift</string>
+								</dict>
+							</dict>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -1325,7 +1351,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#generic-parameter-list</string>
+							<string>#generic-parameter-clause</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1345,7 +1371,7 @@
 							<key>comment</key>
 							<string>Swift 3: generic constraints after the parameters and return type</string>
 							<key>include</key>
-							<string>#generic-constraints</string>
+							<string>#generic-where-clause</string>
 						</dict>
 						<dict>
 							<key>begin</key>
@@ -1404,7 +1430,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#generic-parameter-list</string>
+							<string>#generic-parameter-clause</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1420,7 +1446,7 @@
 							<key>comment</key>
 							<string>Swift 3: generic constraints after the parameters and return type</string>
 							<key>include</key>
-							<string>#generic-constraints</string>
+							<string>#generic-where-clause</string>
 						</dict>
 						<dict>
 							<key>begin</key>
@@ -1464,7 +1490,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.operator.type.function.swift</string>
+							<string>keyword.operator.function-result.swift</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1479,7 +1505,133 @@
 						</dict>
 					</array>
 				</dict>
-				<key>generic-constraints</key>
+				<key>generic-argument-clause</key>
+				<dict>
+					<key>begin</key>
+					<string>&lt;</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.generic-argument-clause.begin.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>&gt;|(?=[)\]{}])</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.generic-argument-clause.end.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.generic-argument-clause.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#available-types</string>
+						</dict>
+					</array>
+				</dict>
+				<key>generic-parameter-clause</key>
+				<dict>
+					<key>begin</key>
+					<string>&lt;</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.generic-parameter-clause.begin.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>&gt;|(?=[^\w\d:&lt;&gt;\s,=&amp;`])(?# characters besides these are never valid in a generic param list -- even if it's not really a valid clause, we should stop trying to parse it if we see one of them.)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.generic-parameter-clause.end.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.generic-parameter-clause.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
+						<dict>
+							<key>comment</key>
+							<string>Swift 2: constraints inside the generic param list</string>
+							<key>include</key>
+							<string>#generic-where-clause</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>variable.language.generic-parameter.swift</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\b((?!\d)\w[\w\d]*)\b</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>,</string>
+							<key>name</key>
+							<string>punctuation.separator.generic-parameters.swift</string>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(:)\s*</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.separator.generic-parameter-constraint.swift</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=[,&gt;]|(?!\G)\bwhere\b)</string>
+							<key>name</key>
+							<string>meta.generic-parameter-constraint.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>begin</key>
+									<string>\G</string>
+									<key>end</key>
+									<string>(?=[,&gt;]|(?!\G)\bwhere\b)</string>
+									<key>name</key>
+									<string>entity.other.inherited-class.swift</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#type-identifier</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#protocol-composition-type</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<key>generic-where-clause</key>
 				<dict>
 					<key>begin</key>
 					<string>\b(where)\b</string>
@@ -1494,7 +1646,7 @@
 					<key>end</key>
 					<string>(?=\s*\{|&gt;)</string>
 					<key>name</key>
-					<string>meta.generic-constraints.swift</string>
+					<string>meta.generic-where-clause.swift</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1521,56 +1673,6 @@
 							</dict>
 							<key>match</key>
 							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(?:(==)|(:))(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
-						</dict>
-					</array>
-				</dict>
-				<key>generic-parameter-list</key>
-				<dict>
-					<key>begin</key>
-					<string>(&lt;)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.generic-parameter-list.begin.swift</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(&gt;)|(?=[^\w\d&lt;&gt;\s,=&amp;`])(?# characters besides these are never valid in a generic param list -- even if it's not really a valid clause, we should stop trying to parse it if we see one of them.)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.generic-parameter-list.end.swift</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>meta.generic-parameter-list.swift</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#comments</string>
-						</dict>
-						<dict>
-							<key>comment</key>
-							<string>Swift 2: constraints inside the generic param list</string>
-							<key>include</key>
-							<string>#generic-constraints</string>
-						</dict>
-						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.language.generic-parameter.swift</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>\b((?!\d)\w[\w\d]*)\b</string>
 						</dict>
 					</array>
 				</dict>
@@ -2326,7 +2428,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#generic-parameter-list</string>
+									<string>#generic-parameter-clause</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -2346,7 +2448,7 @@
 									<key>comment</key>
 									<string>Swift 3: generic constraints after the parameters and return type</string>
 									<key>include</key>
-									<string>#generic-constraints</string>
+									<string>#generic-where-clause</string>
 								</dict>
 								<dict>
 									<key>begin</key>
@@ -2422,13 +2524,13 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#generic-parameter-list</string>
+							<string>#generic-parameter-clause</string>
 						</dict>
 						<dict>
 							<key>comment</key>
 							<string>Swift 3: generic constraints after the generic param list</string>
 							<key>include</key>
-							<string>#generic-constraints</string>
+							<string>#generic-where-clause</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -2462,6 +2564,44 @@
 								<dict>
 									<key>include</key>
 									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<key>type-identifier</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#builtin-types</string>
+										</dict>
+									</array>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;)</string>
+							<key>name</key>
+							<string>meta.type-name.swift</string>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?!\G)(?=&lt;)</string>
+							<key>end</key>
+							<string>(?!\G)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#generic-argument-clause</string>
 								</dict>
 							</array>
 						</dict>
@@ -2502,7 +2642,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#generic-parameter-list</string>
+							<string>#generic-parameter-clause</string>
 						</dict>
 					</array>
 				</dict>
