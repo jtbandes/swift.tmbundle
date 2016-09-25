@@ -1688,7 +1688,7 @@
 										  		  | [\x{E0100}-\x{E01EF}]
 												)
 											)+
-										  | (\g&lt;oph&gt;(\g&lt;oph&gt;|\g&lt;opc&gt;)+)
+										  | (\g&lt;oph&gt;(\g&lt;oph&gt;|\g&lt;opc&gt;)*)
 										)
 										(?=\.|;|$|//|/\*|\s)
 									</string>
@@ -1775,7 +1775,7 @@
 						  		  | [\x{E0100}-\x{E01EF}]
 								)
 							)++
-						  | (\g&lt;oph&gt;(\g&lt;oph&gt;|\g&lt;opc&gt;)++)
+						  | (\g&lt;oph&gt;(\g&lt;oph&gt;|\g&lt;opc&gt;)*+)
 						)
 						\s*
 					</string>
