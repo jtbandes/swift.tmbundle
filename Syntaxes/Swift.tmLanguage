@@ -1862,18 +1862,31 @@
 				<key>inheritance-clause</key>
 				<dict>
 					<key>begin</key>
-					<string>:\s*</string>
+					<string>(:)(?=\s*\{)|(:)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.empty-inheritance-clause.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.inheritance-clause.swift</string>
+						</dict>
+					</dict>
 					<key>end</key>
-					<string>(?=\bwhere\b|\{)</string>
+					<string>(?=\{|(?!\G)\bwhere\b)</string>
 					<key>name</key>
 					<string>meta.inheritance-clause.swift</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>\b(?!\d)\w[\w\d]*\b</string>
+							<string>\G</string>
 							<key>end</key>
-							<string>(?=\s*[^\s(&lt;])(?# this pattern may only end if what follows doesn't look like it could be a valid type)</string>
+							<string>(?=\{|(?!\G)\bwhere\b)</string>
 							<key>name</key>
 							<string>entity.other.inherited-class.swift</string>
 							<key>patterns</key>
