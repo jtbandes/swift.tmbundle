@@ -1185,6 +1185,12 @@
 							<string>keyword.operator.type.composition.swift</string>
 						</dict>
 						<dict>
+							<key>match</key>
+							<string>(?&lt;=\.)(?:Protocol|Type)\b</string>
+							<key>name</key>
+							<string>keyword.operator.type.metatype.swift</string>
+						</dict>
+						<dict>
 							<key>include</key>
 							<string>#tuple-type</string>
 						</dict>
@@ -2902,10 +2908,21 @@
 					<string>support.variable.swift</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.type.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.type.metatype.swift</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>\b(?:dynamicType|Protocol|Type)\b</string>
-					<key>name</key>
-					<string>keyword.operator.other.swift</string>
+					<string>(?&lt;=\.)(?:(dynamicType)|(Protocol|Type))\b</string>
 				</dict>
 				<dict>
 					<key>match</key>
