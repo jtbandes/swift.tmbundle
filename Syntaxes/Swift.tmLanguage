@@ -2896,18 +2896,6 @@
 					<string>keyword.other.capture-specifier.swift</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b(?:super|self)\b</string>
-					<key>name</key>
-					<string>variable.language.swift</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\B(?:#file|#line|#column|#function|#dsohandle)\b|\b(?:__FILE__|__LINE__|__COLUMN__|__FUNCTION__|__DSO_HANDLE__)\b</string>
-					<key>name</key>
-					<string>support.variable.swift</string>
-				</dict>
-				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -2922,7 +2910,19 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?&lt;=\.)(?:(dynamicType)|(Protocol|Type))\b</string>
+					<string>(?&lt;=\.)(?:(dynamicType|self)|(Protocol|Type))\b</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?:super|self)\b</string>
+					<key>name</key>
+					<string>variable.language.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\B(?:#file|#line|#column|#function|#dsohandle)\b|\b(?:__FILE__|__LINE__|__COLUMN__|__FUNCTION__|__DSO_HANDLE__)\b</string>
+					<key>name</key>
+					<string>support.variable.swift</string>
 				</dict>
 				<dict>
 					<key>match</key>
