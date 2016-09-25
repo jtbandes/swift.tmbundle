@@ -337,7 +337,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>builtin-property</key>
+		<key>builtin-properties</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -2767,7 +2767,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#builtin-property</string>
+					<string>#builtin-properties</string>
 				</dict>
 				<dict>
 					<key>include</key>
