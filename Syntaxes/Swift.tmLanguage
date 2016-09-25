@@ -391,6 +391,12 @@
 					<key>include</key>
 					<string>#builtin-typealias</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\bAny\b</string>
+					<key>name</key>
+					<string>support.type.any.swift</string>
+				</dict>
 			</array>
 			<key>repository</key>
 			<dict>
@@ -1169,12 +1175,6 @@
 							<string>\.\.\.</string>
 							<key>name</key>
 							<string>keyword.operator.function.variadic-parameter.swift</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>\bAny\b</string>
-							<key>name</key>
-							<string>keyword.operator.type.any.swift</string>
 						</dict>
 						<dict>
 							<key>comment</key>
