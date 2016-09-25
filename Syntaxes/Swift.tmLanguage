@@ -2776,6 +2776,12 @@
 					<string>#builtin-properties</string>
 				</dict>
 				<dict>
+					<key>match</key>
+					<string>\b_\b</string>
+					<key>name</key>
+					<string>support.variable.discard-value.swift</string>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>#keyword</string>
 				</dict>
