@@ -2207,7 +2207,7 @@
 							<key>begin</key>
 							<string>:\s*(?!\s)</string>
 							<key>end</key>
-							<string>(?=[,\)])</string>
+							<string>(?=[,)])</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -2226,7 +2226,7 @@
 									<key>comment</key>
 									<string>a parameter's default value</string>
 									<key>end</key>
-									<string>(?=[,\)])</string>
+									<string>(?=[,)])</string>
 									<key>patterns</key>
 									<array>
 										<dict>
@@ -2751,6 +2751,42 @@
 				</dict>
 			</dict>
 		</dict>
+		<key>expression-element-list</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>((?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))\s*(:)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.argument-label.swift</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=[,)\]])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#expressions</string>
+				</dict>
+			</array>
+		</dict>
 		<key>expressions</key>
 		<dict>
 			<key>patterns</key>
@@ -2796,14 +2832,30 @@
 					<string>#builtin-properties</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function-call-expression</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#subscript-expression</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#parenthesized-expression</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#member-reference</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>\b_\b</string>
 					<key>name</key>
 					<string>support.variable.discard-value.swift</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#keyword</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -2832,6 +2884,83 @@
 						<dict>
 							<key>include</key>
 							<string>#expressions</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>function-call-expression</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>((?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))\s*(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.swift</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.begin.swift</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>foo(args) -- a call whose callee is a highlightable name</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.end.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.function-call.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expression-element-list</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=[`\])}&gt;\p{L}_\p{N}\p{M}])\s*(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.begin.swift</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>[Int](args) -- a call whose callee is a more complicated expression</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.end.swift</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.function-call.swift</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expression-element-list</string>
 						</dict>
 					</array>
 				</dict>
@@ -3194,6 +3323,24 @@
 					</array>
 				</dict>
 			</dict>
+		</dict>
+		<key>member-reference</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.swift</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?&lt;=\.)((?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))</string>
+				</dict>
+			</array>
 		</dict>
 		<key>operators</key>
 		<dict>
@@ -3669,6 +3816,36 @@
 				</dict>
 			</array>
 		</dict>
+		<key>parenthesized-expression</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.tuple.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.tuple.end.swift</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression-element-list</string>
+				</dict>
+			</array>
+		</dict>
 		<key>root</key>
 		<dict>
 			<key>patterns</key>
@@ -3728,6 +3905,38 @@
 					<string>Allows the special return snippet to fire.</string>
 					<key>match</key>
 					<string>(\[)(\])</string>
+				</dict>
+			</array>
+		</dict>
+		<key>subscript-expression</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=[`\p{L}_\p{N}\p{M}])\s*(\[)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\]</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.swift</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.subscript-expression.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression-element-list</string>
 				</dict>
 			</array>
 		</dict>
