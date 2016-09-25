@@ -1640,6 +1640,21 @@
 									<string>support.type.module.import.swift</string>
 								</dict>
 								<dict>
+									<key>captures</key>
+									<dict>
+										<key>4</key>
+										<dict>
+											<key>patterns</key>
+											<array>
+												<dict>
+													<key>match</key>
+													<string>\.</string>
+													<key>name</key>
+													<string>invalid.illegal.dot-not-allowed-here.swift</string>
+												</dict>
+											</array>
+										</dict>
+									</dict>
 									<key>match</key>
 									<string>(?x)
 										(?&lt;=\G|\.)
