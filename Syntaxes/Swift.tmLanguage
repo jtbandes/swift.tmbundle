@@ -1658,21 +1658,61 @@
 							<string>#available-types</string>
 						</dict>
 						<dict>
-							<key>captures</key>
+							<key>begin</key>
+							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(==)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
+							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
 								<dict>
 									<key>name</key>
 									<string>keyword.operator.generic-constraint.same-type.swift</string>
 								</dict>
-								<key>2</key>
+							</dict>
+							<key>end</key>
+							<string>(?=\s*[,&gt;\{])</string>
+							<key>name</key>
+							<string>meta.generic-where-clause.same-type-requirement.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#available-types</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(:)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
 								<dict>
 									<key>name</key>
 									<string>keyword.operator.generic-constraint.conforms-to.swift</string>
 								</dict>
 							</dict>
-							<key>match</key>
-							<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(?:(==)|(:))(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
+							<key>end</key>
+							<string>(?=\s*[,&gt;\{])</string>
+							<key>name</key>
+							<string>meta.generic-where-clause.conformance-requirement.swift</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>begin</key>
+									<string>\G</string>
+									<key>end</key>
+									<string>(?=\s*[,&gt;\{])</string>
+									<key>name</key>
+									<string>entity.other.inherited-class.swift</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#available-types</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
 						</dict>
 					</array>
 				</dict>
