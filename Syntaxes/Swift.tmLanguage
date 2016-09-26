@@ -2811,6 +2811,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>((?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))\s*(:)</string>
 					<key>beginCaptures</key>
@@ -2826,6 +2830,8 @@
 							<string>punctuation.separator.argument-label.swift</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>an element with a label</string>
 					<key>end</key>
 					<string>(?=[,)\]])</string>
 					<key>patterns</key>
@@ -2837,8 +2843,19 @@
 					</array>
 				</dict>
 				<dict>
-					<key>include</key>
-					<string>#expressions</string>
+					<key>begin</key>
+					<string>(?![,)\]])(?=\S)</string>
+					<key>comment</key>
+					<string>an element without a label (i.e. anything else)</string>
+					<key>end</key>
+					<string>(?=[,)\]])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expressions</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
