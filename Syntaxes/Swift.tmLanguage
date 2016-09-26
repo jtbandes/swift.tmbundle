@@ -3144,7 +3144,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?:super|self)\b</string>
+					<string>\b(?:super|self|Self)\b</string>
 					<key>name</key>
 					<string>variable.language.swift</string>
 				</dict>
