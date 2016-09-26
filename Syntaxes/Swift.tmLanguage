@@ -3467,9 +3467,8 @@
 					<key>begin</key>
 					<string>(?x)
 						(?=
-							\.?
-							(
-								[./=\-+!*%&lt;&gt;&amp;|^~?]
+							(?&lt;oph&gt;								# operator-head
+								[/=\-+!*%&lt;&gt;&amp;|^~?]
 							  | [\x{00A1}-\x{00A7}]
 							  | [\x{00A9}\x{00AB}]
 							  | [\x{00AC}\x{00AE}]
@@ -3484,6 +3483,17 @@
 							  | [\x{2E00}-\x{2E7F}]
 							  | [\x{3001}-\x{3003}]
 							  | [\x{3008}-\x{3030}]
+							)
+						  | \.
+							(
+								\g&lt;oph&gt;							# operator-head
+							  | \.
+							  | [\x{0300}-\x{036F}]				# operator-character
+							  | [\x{1DC0}-\x{1DFF}]
+							  | [\x{20D0}-\x{20FF}]
+							  | [\x{FE00}-\x{FE0F}]
+							  | [\x{FE20}-\x{FE2F}]
+							  | [\x{E0100}-\x{E01EF}]
 							)
 						)
 					</string>
@@ -3704,7 +3714,7 @@
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>\G(\?|:)$</string>
+											<string>\G\?$</string>
 											<key>name</key>
 											<string>keyword.operator.ternary.swift</string>
 										</dict>
@@ -3922,6 +3932,12 @@
 							</string>
 						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>:</string>
+					<key>name</key>
+					<string>keyword.operator.ternary.swift</string>
 				</dict>
 			</array>
 		</dict>
