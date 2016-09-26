@@ -2818,7 +2818,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.swift</string>
+							<string>support.function.any-method.swift</string>
 						</dict>
 						<key>4</key>
 						<dict>
@@ -2960,7 +2960,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.swift</string>
+							<string>support.function.any-method.swift</string>
 						</dict>
 						<key>4</key>
 						<dict>
