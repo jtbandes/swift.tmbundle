@@ -2833,7 +2833,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#keyword</string>
+					<string>#keywords</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -2966,7 +2966,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>keyword</key>
+		<key>keywords</key>
 		<dict>
 			<key>patterns</key>
 			<array>
