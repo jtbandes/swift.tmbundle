@@ -3026,7 +3026,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?:fileprivate|internal|private|public)\b</string>
+					<string>\b(?:fileprivate|private|internal|public|open)\b</string>
 					<key>name</key>
 					<string>keyword.other.declaration-specifier.accessibility.swift</string>
 				</dict>
