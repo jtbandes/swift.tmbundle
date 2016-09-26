@@ -1117,6 +1117,23 @@
 				</dict>
 			</array>
 		</dict>
+		<key>compound-name</key>
+		<dict>
+			<key>comment</key>
+			<string>a reference to a function with disambiguating argument labels, such as foo(_:), foo(bar:), etc.</string>
+			<key>match</key>
+			<string>(?x)
+				(\b[\p{L}_][\p{L}_\p{N}\p{M}]*|`[\p{L}_][\p{L}_\p{N}\p{M}]*`)       # function name
+				\(
+					(
+						([\p{L}_][\p{L}_\p{N}\p{M}]*|`[\p{L}_][\p{L}_\p{N}\p{M}]*`) # argument label
+						:                                                           # colon
+					)+
+				\)
+			</string>
+			<key>name</key>
+			<string>entity.name.function.compound-name.swift</string>
+		</dict>
 		<key>declarations</key>
 		<dict>
 			<key>patterns</key>
@@ -2872,6 +2889,10 @@
 				<dict>
 					<key>include</key>
 					<string>#keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#compound-name</string>
 				</dict>
 				<dict>
 					<key>include</key>
