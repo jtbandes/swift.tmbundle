@@ -2386,7 +2386,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>\b(associativity)\b(?:\s*:\s*(right|left)\b)?</string>
+									<string>\b(associativity)\b(?:\s*:\s*(right|left|none)\b)?</string>
 								</dict>
 								<dict>
 									<key>captures</key>
