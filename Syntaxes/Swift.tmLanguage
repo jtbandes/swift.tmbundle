@@ -461,9 +461,9 @@
 					<array>
 						<dict>
 							<key>comment</key>
-							<string>Process is an enum, but it acts like a constant</string>
+							<string>CommandLine is an enum, but it acts like a constant</string>
 							<key>match</key>
-							<string>\b(?:Process|CommandLine)\b</string>
+							<string>\b(?:CommandLine|Process(?=\.))\b</string>
 							<key>name</key>
 							<string>support.constant.swift</string>
 						</dict>
