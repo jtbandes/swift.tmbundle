@@ -2821,17 +2821,19 @@
 							<array>
 								<dict>
 									<key>begin</key>
-									<string>\b(case)\b\s*(?=[`\p{L}_])</string>
+									<string>\b(case)\b\s*</string>
 									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>storage.type.enum.case.swift</string>
+											<string>variable.language.storage.type.enum.case.swift</string>
 										</dict>
 									</dict>
 									<key>end</key>
-									<string>(?!\G)(?=[;}])|(?!\G)(?&lt;!,)$(?#not finished with this)</string>
+									<string>(?!\G)(?!//|/\*)(?=[;}]|[^\s,])</string>
+									<key>name</key>
+									<string>meta.enum-case.swift</string>
 									<key>patterns</key>
 									<array>
 										<dict>
@@ -2839,45 +2841,12 @@
 											<string>#comments</string>
 										</dict>
 										<dict>
-											<key>begin</key>
-											<string>(?x)
-												((?&lt;q&gt;`|\b)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))    # case name
-												\s*
-												(?=[=(,;]|//|/\*|$)
-											</string>
-											<key>beginCaptures</key>
-											<dict>
-												<key>1</key>
-												<dict>
-													<key>name</key>
-													<string>constant.other.swift</string>
-												</dict>
-											</dict>
-											<key>comment</key>
-											<string>Match a single case</string>
-											<key>end</key>
-											<string>\s*(?=[,;}]|$)</string>
-											<key>patterns</key>
-											<array>
-												<dict>
-													<key>include</key>
-													<string>#comments</string>
-												</dict>
-												<dict>
-													<key>include</key>
-													<string>#associated-values</string>
-												</dict>
-												<dict>
-													<key>include</key>
-													<string>#raw-value</string>
-												</dict>
-												<dict>
-													<key>match</key>
-													<string>[^,;}]+</string>
-													<key>name</key>
-													<string>invalid.illegal.character-not-allowed-here.swift</string>
-												</dict>
-											</array>
+											<key>include</key>
+											<string>#case</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#more-cases</string>
 										</dict>
 										<dict>
 											<key>match</key>
@@ -3006,6 +2975,72 @@
 											<string>invalid.illegal.extra-colon-in-parameter-list.swift</string>
 										</dict>
 									</array>
+								</dict>
+							</array>
+						</dict>
+						<key>case</key>
+						<dict>
+							<key>begin</key>
+							<string>(?x)
+								((?&lt;q&gt;`|\b)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;))    # case name
+								\s*
+								(?=[=(,;}]|//|/\*|$)
+							</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>constant.other.swift</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>Match a single case</string>
+							<key>end</key>
+							<string>(?&lt;=\))|(?=\s*([,;}]|$|//|/\*))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#comments</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#associated-values</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#raw-value</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>[^,;}]+</string>
+									<key>name</key>
+									<string>invalid.illegal.character-not-allowed-here.swift</string>
+								</dict>
+							</array>
+						</dict>
+						<key>more-cases</key>
+						<dict>
+							<key>begin</key>
+							<string>,\s*</string>
+							<key>end</key>
+							<string>(?!\G)(?!//|/\*)(?=[;}]|[^\s,])(?![`\p{L}_\p{N}\p{M}]+\s*[,;}(])</string>
+							<key>name</key>
+							<string>meta.enum-case.more-cases</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#comments</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#case</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#more-cases</string>
 								</dict>
 							</array>
 						</dict>
