@@ -2212,7 +2212,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#available-types</string>
+									<string>#expressions</string>
 								</dict>
 								<dict>
 									<key>match</key>
